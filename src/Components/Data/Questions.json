@@ -1,0 +1,66 @@
+{
+  "questions": [
+    {
+      "id": 0,
+      "question": "Everything in a react is a _____________",
+      "options": [
+        "Module",
+        "Package",
+        "Component",
+        "Class"
+      ],
+      "answer": ["Component"]
+    },
+
+    {
+      "id": 1,
+      "question": "What is ReactJs in MVC?",
+      "options": [
+        "Middleware",
+        "Controller",
+        "Model",
+        "Router"
+      ],
+      "answer": ["Controller"]
+    },
+
+    {
+      "id": 2,
+      "question": "Who Developed ReactJs?",
+      "options": ["Apple", "Facebook", "Twitter", "Google"],
+      "answer": ["Facebook"]
+    },
+
+    {
+      "id": 3,
+      "question": "_______ helps React for keeping their data unidirectional",
+      "options": ["JSX", "Flux", "DOM", "Props"],
+      "answer": ["Flux"]
+    },
+
+    {
+      "id": 4,
+      "question": "What port is the default where the webpack-dev-server will run?",
+      "options": [
+        "3000",
+        "8080",
+        "3007",
+        "4006"
+      ],
+      "answer": ["8080"]
+    },
+
+    {
+      "id": 5,
+      "question": "Which of the following below act as the input of a class-based component? ",
+      "options": [
+        "class",
+        "factory",
+        "render",
+        "props"
+      ],
+      "answer": ["props"]
+    }
+
+  ]
+}

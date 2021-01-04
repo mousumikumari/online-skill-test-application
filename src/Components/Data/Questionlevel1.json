@@ -1,0 +1,44 @@
+{
+    "questions": [
+      {
+        "id": 0,
+        "question": "Which built-in method calls a function for each element in the array?",
+        "options": [
+          "whileLoop()",
+          "Loop()",
+          "forEach()",
+          "None"
+        ],
+        "answer": ["Loop()"]
+      },
+      {
+        "id": 1,
+        "question": "Which of the following function of Number object returns a string value version of the current number?",
+        "options": [
+          "toString()",
+          "toFixed()",
+          "toLocaleString()",
+          "toPrecision()"
+        ],
+        "answer": ["toString()"]
+      },
+      {
+        "id": 2,
+        "question": "Which of the following function of String object returns the characters in a string beginning at the specified location through the specified number of characters?",
+        "options": [
+          "slice()",
+          "split()",
+          "substr()",
+          "search()"
+        ],
+        "answer": ["substr()"]
+      },
+      {
+        "id": 3,
+        "question": "Which is true about React?",
+        "options": ["JS Library", "Component", "Module", "Function"],
+        "answer": ["JS Library", "Component"]
+      }
+    ]
+  }
+  

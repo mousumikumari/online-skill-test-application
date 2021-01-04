@@ -1,0 +1,44 @@
+{
+    "questions": [
+      {
+        "id": 0,
+        "question": "What are two ways that data gets handled in React? ",
+        "options": [
+          "state",
+          "model",
+          "props",
+          "components"
+        ],
+        "answer": ["state", "props"]
+      },
+      {
+        "id": 1,
+        "question": "What is used in ReactJs to increase performance",
+        "options": [
+          "Both B and c",
+          "Original DOM",
+          "Virtual DOM",
+          "None of the above"
+        ],
+        "answer": ["Virtual DOM"]
+      },
+      {
+        "id": 2,
+        "question": "www is based on which model?",
+        "options": ["Local-server", "Client-server", "3-tier", "None of these"],
+        "answer": ["Client-server"]
+      },
+      {
+        "id": 3,
+        "question": "Must API for every ReactJs component",
+        "options": [
+          "SetinitialComponent",
+          "renderComponent",
+          "render",
+          "All of the above"
+        ],
+        "answer": ["renderComponent"]
+      }
+    ]
+  }
+  
