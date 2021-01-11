@@ -1,9 +1,10 @@
-import React,{Component} from 'react';
+/* eslint-disable linebreak-style */
+import React, { Component } from "react";
 import _ from "lodash";
-import level0Question from '../../Components/Data/Questions.json';
-import level1Question from '../../Components/Data/Questionlevel1.json';
-import level2Question from '../../Components/Data/Questionlevel2.json';
-import Question from './Question/Question';
+import level0Question from "../../Components/Data/Questions.json";
+import level1Question from "../../Components/Data/Questionlevel1.json";
+import level2Question from "../../Components/Data/Questionlevel2.json";
+import Question from "./Question/Question";
 import { logout } from "../../Components/Utilities/Index";
 
 const skillLevels = ["Level 1", "Level 2", "Level 3"];
@@ -27,7 +28,6 @@ let initialState = {
   password: "",
 };
 export default class Questions extends Component {
-
   constructor(props) {
     super(props);
     this.setInitialState();
@@ -35,57 +35,33 @@ export default class Questions extends Component {
       ? JSON.parse(localStorage.getItem("state"))
       : initialState;
     this.updateLocalStorage();
-      }
+  }
 
-      componentDidMount() {
-        const { history } = this.props;
-        this.timer = setInterval(() => {
-          const newCount = this.state.quizTime - 1;
-          this.setState({ quizTime: newCount >= 0 ? newCount : 0 });        
-        }, 1000);
-        window.addEventListener("popstate", () => {
-          history.push("/Questions");
-        });
-      }
+  componentDidMount() {
+    const { history } = this.props;
+    this.timer = setInterval(() => {
+      // eslint-disable-next-line react/destructuring-assignment
+      const newCount = this.state.quizTime - 1;
+      this.setState({ quizTime: newCount >= 0 ? newCount : 0 });
+      this.updateLocalStorage();
+    }, 1000);
+    window.addEventListener("popstate", () => {
+      history.push("/Questions");
+    });
+  }
 
-      resetTimer = () => {
-        this.setState({
-          quizTime: 600,
-        });
-      };
-    
-  setInitialState() {
-    if (!JSON.parse(localStorage.getItem("state"))) {
-      const userData = JSON.parse(localStorage.getItem("userInformation"));
-      const level = _.get(this.props, "location.state.skillLevel");
-      let questionsd = [];
-      if (level === skillLevels[0]) {
-        questionsd = level0Question.questions;
-      } else if (level === skillLevels[1]) {
-        questionsd = level1Question.questions;
-      } else {
-        questionsd = level2Question.questions;
-      }
-      initialState = {
-        skillLevel: level,
-        questionData: questionsd,
-        questionCount: questionsd.length,
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        password: userData.password,
-        email: userData.email,
-        gender: userData.gender,
-        isRegistered: userData.isRegistered,
-        questionIndex: 0,
-        quizTime: 600,
-        candidateDetails: [],
-        candidateResponses: [],
-        currentResponse: [],
-        questionsAttempted: 0,
-        candidateScore: 0,
-      };
-    }
-}
+  /**
+   * Reset Timer on quiz over
+   */
+  resetTimer = () => {
+    this.setState({
+      quizTime: 600,
+    });
+  };
+
+  /**
+   * Display next question
+   */
   nextQuestion = () => {
     const {
       currentResponse,
@@ -94,7 +70,7 @@ export default class Questions extends Component {
       candidateResponses,
     } = this.state;
     const isAnswerCorrect = JSON.stringify(currentResponse)
-      === JSON.stringify(questionData[questionIndex].answer);
+    === JSON.stringify(questionData[questionIndex].answer);
     const isQuestionAttempted = currentResponse.length > 0;
     candidateResponses.push({
       id: questionIndex,
@@ -121,6 +97,11 @@ export default class Questions extends Component {
     );
   };
 
+  /**
+   *Save the choice selected
+   *
+   * @param {string} event choice of question selected
+  */
   choiceSelected = (event) => {
     const { currentResponse } = this.state;
     if (currentResponse.includes(event)) {
@@ -131,6 +112,9 @@ export default class Questions extends Component {
     this.updateLocalStorage();
   };
 
+  /**
+   * Display Previous qestion in the questionaire
+  */
   previousQuestion = () => {
     const { questionIndex, candidateResponses } = this.state;
     const questionResponse = candidateResponses.filter(
@@ -148,10 +132,13 @@ export default class Questions extends Component {
         questionIndex: questionIndex - 1,
         currentResponse: response,
       },
-      () => this.updateLocalStorage()
+      () => this.updateLocalStorage(),
     );
   };
 
+  /**
+* Download JSON file of the Candidate Responses
+*/
   downloadFile = async () => {
     const { candidateResponses } = this.state;
     const myData = candidateResponses;
@@ -168,6 +155,9 @@ export default class Questions extends Component {
     this.updateLocalStorage();
   };
 
+  /**
+  * Submit candidate answers
+  */
   submitTest = () => {
     const {
       currentResponse,
@@ -176,7 +166,7 @@ export default class Questions extends Component {
       candidateResponses,
     } = this.state;
     const isAnswerCorrect = JSON.stringify(currentResponse)
-      === JSON.stringify(questionData[questionIndex].answer);
+    === JSON.stringify(questionData[questionIndex].answer);
     const isQuestionAttempted = currentResponse.length > 0;
     candidateResponses.push({
       id: questionIndex,
@@ -210,6 +200,40 @@ export default class Questions extends Component {
       },
     );
   };
+
+  setInitialState() {
+    if (!JSON.parse(localStorage.getItem("state"))) {
+      const userData = JSON.parse(localStorage.getItem("userInformation"));
+      const level = _.get(this.props, "location.state.skillLevel");
+      let questionsd = [];
+      if (level === skillLevels[0]) {
+        questionsd = level0Question.questions;
+      } else if (level === skillLevels[1]) {
+        questionsd = level1Question.questions;
+      } else {
+        questionsd = level2Question.questions;
+      }
+      initialState = {
+        skillLevel: level,
+        questionData: questionsd,
+        questionCount: questionsd.length,
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        password: userData.password,
+        email: userData.email,
+        gender: userData.gender,
+        isRegistered: userData.isRegistered,
+        questionIndex: 0,
+        quizTime: 600,
+        candidateDetails: [],
+        candidateResponses: [],
+        currentResponse: [],
+        questionsAttempted: 0,
+        candidateScore: 0,
+      };
+    }
+  }
+
   updateLocalStorage() {
     localStorage.setItem("state", JSON.stringify(this.state));
   }
@@ -225,17 +249,18 @@ export default class Questions extends Component {
 
     return (
       <Question
-      questionId={questionIndex}
-      questionText={questionData[questionIndex].question}
-      options={questionData[questionIndex].options}
-      questionCount={questionCount}
-      onNext={this.nextQuestion}
-      onPrevious={this.previousQuestion}
-      onChange={this.choiceSelected}
-      submitTest={this.submitTest}
-      answer={currentResponse}
-      quizTime={quizTime}/>
-      )
+        questionId={questionIndex}
+        questionText={questionData[questionIndex].question}
+        options={questionData[questionIndex].options}
+        questionCount={questionCount}
+        onNext={this.nextQuestion}
+        onPrevious={this.previousQuestion}
+        onChange={this.choiceSelected}
+        submitTest={this.submitTest}
+        answer={currentResponse}
+        quizTime={quizTime}
+      />
+    );
   }
 }
 

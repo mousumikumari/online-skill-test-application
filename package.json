@@ -3,18 +3,38 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-eslint": "^10.0.3",
+    "better-docs": "^2.3.2",
     "bootstrap": "^4.5.3",
+    "eslint": "^5.16.0",
+    "g": "^2.0.1",
     "jquery": "^3.5.1",
+    "jsdoc": "^3.6.6",
+    "lodash": "^4.17.20",
+    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "react-test-renderer": "^16.13.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "lint": "eslint ./src --ext .js",
+    "lint:fix": "npm run lint --fix",
+    "eject": "react-scripts eject",
+    "createdoc": "jsdoc src -r -d docs"
+  },
+  "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0"
   }
 }

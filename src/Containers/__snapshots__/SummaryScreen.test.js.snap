@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`First Submit Test Snapshot test 1`] = `
+<div
+  className="container"
+>
+  <h4>
+    Thank You! 
+  </h4>
+  <p>
+    <b>
+      Name :
+    </b>
+     
+    
+     
+    
+    <br />
+    <b>
+      Email :
+    </b>
+     
+    
+    <br />
+    <b>
+      Questions Attempted : 
+    </b>
+    <span
+      className="number-score"
+    >
+      0
+       / 
+      0
+    </span>
+    <br />
+    <b>
+      Score :
+    </b>
+     
+    <span
+      className="number-score"
+    >
+      0
+       / 
+      0
+    </span>
+  </p>
+</div>
+`;

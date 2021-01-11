@@ -1,48 +1,43 @@
-import React from 'react'
-import { Button} from "react-bootstrap";
+/* eslint-disable react/destructuring-assignment */
+import React from "react";
+import PropTypes from "prop-types";
+import { Button } from "react-bootstrap";
 
 const Question = (props) => {
-  const { quizTime, questionCount, questionId } = props;
-  let second = quizTime % 60;
-  let minute = Math.floor(quizTime / 60);
+  const {
+    questionCount, questionId, submitTest, questionText, onNext, onPrevious, options,
+  } = props;
+  let second = props.quizTime % 60;
+  let minute = Math.floor(props.quizTime / 60);
   minute = minute.toString().length === 1 ? `0${minute}` : minute;
   second = second.toString().length === 1 ? `0${second}` : second;
-  const { submitTest } = props;
 
   if (second === "00" && minute === "00") {
     submitTest();
   }
-  return(
+  return (
     <div className="container">
-     <div className="Countdown-time">
-        Timer :
-        {" "}
-        {minute}
-        {" "}
-        :
-        {" "}
-        {second}
+      <div className="Countdown-time">
+        Timer : {minute} : {second}
       </div>
       <div className="questions">
         <h4 id="question">
-          Question
-          {" "}
-          {props.questionId + 1}
-          {" "}
-          :
-          {" "}
-          {props.questionText}
+          Question {questionId + 1} : {questionText}
         </h4>
         <div id="">
           <div className="radio">
-            {props.options.map((choice) => (
+            {options.map((choice) => (
               <div key={choice}>
                 <label className="radio-inline" htmlFor="{choice}">
                   <input
                     type="checkbox"
                     value={choice}
                     key={choice}
-                    checked={props.answer.length > 0 ? props.answer.includes(choice) : false}
+                    checked={
+                      props.answer.length > 0
+                        ? props.answer.includes(choice)
+                        : false
+                    }
                     onChange={() => props.onChange(choice)}
                   />
                   {choice}
@@ -53,32 +48,48 @@ const Question = (props) => {
           </div>
         </div>
 
-        {props.questionId !== 0 && (
-        <Button
-          variant="info"
-          onClick={props.onPrevious}
-          className="questionaireButton">
-          Previous
-        </Button>
+        {questionId !== 0 && (
+          <Button
+            variant="info"
+            onClick={onPrevious}
+            className="questionaireButton"
+          >
+            Previous
+          </Button>
         )}
-        {props.questionId < props.questionCount - 1 && (
-        <Button
-          variant="info"
-          className="questionaireButton"
-          onClick={props.onNext}
-        >
-          Next
-        </Button>
+        {questionId < questionCount - 1 && (
+          <Button
+            variant="info"
+            className="questionaireButton"
+            onClick={onNext}
+          >
+            Next
+          </Button>
         )}
         <Button
           variant="info"
           id="submitTest"
-          onClick={props.submitTest}
-          className="questionaireButton">
+          onClick={submitTest}
+          className="questionaireButton"
+        >
           Submit Test
         </Button>
       </div>
     </div>
   );
 };
-export default Question
+
+Question.propTypes = {
+  quizTime: PropTypes.number.isRequired,
+  questionCount: PropTypes.number.isRequired,
+  questionId: PropTypes.number.isRequired,
+  submitTest: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onPrevious: PropTypes.func.isRequired,
+  answer: PropTypes.func.isRequired,
+  questionText: PropTypes.string.isRequired,
+  onNext: PropTypes.func.isRequired,
+  options: PropTypes.func.isRequired,
+};
+
+export default Question;
