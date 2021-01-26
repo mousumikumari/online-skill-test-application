@@ -2,6 +2,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Button } from "react-bootstrap";
+import "./Question.css";
+import Auxiliary from '../../../Hoc/Auxiliary';
 
 const Question = (props) => {
   const {
@@ -16,6 +18,7 @@ const Question = (props) => {
     submitTest();
   }
   return (
+    <Auxiliary>
     <div className="container">
       <div className="Countdown-time">
         Timer : {minute} : {second}
@@ -57,6 +60,7 @@ const Question = (props) => {
             Previous
           </Button>
         )}
+          &nbsp; &nbsp; &nbsp;
         {questionId < questionCount - 1 && (
           <Button
             variant="info"
@@ -66,6 +70,7 @@ const Question = (props) => {
             Next
           </Button>
         )}
+        &nbsp; &nbsp; &nbsp;
         <Button
           variant="info"
           id="submitTest"
@@ -76,6 +81,7 @@ const Question = (props) => {
         </Button>
       </div>
     </div>
+    </Auxiliary>
   );
 };
 

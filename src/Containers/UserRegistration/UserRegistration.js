@@ -159,7 +159,7 @@ class userRegistration extends Component {
               return "";
             })}
           </div>
-          {/* <label id="labelfirstName">FirstName :</label>{" "} */}
+
           <input
             type="text"
             id="firstName"
@@ -169,7 +169,7 @@ class userRegistration extends Component {
             placeholder="FirstName..."
           />
           <br />
-          {/* <label>LastName :</label>{" "} */}
+
           <input
             type="text"
             id="lastName"
@@ -179,7 +179,7 @@ class userRegistration extends Component {
             placeholder="LastName..."
           />
           <br />
-          {/* <label>Password :</label>{" "} */}
+
           <input
             type="password"
             id="password"
@@ -189,7 +189,7 @@ class userRegistration extends Component {
             placeholder="Password..."
           />
           <br />
-          {/* <label>Email :</label>{" "} */}
+
           <input
             type="text"
             id="email"
@@ -199,7 +199,7 @@ class userRegistration extends Component {
             placeholder="Email..."
           />
           <br />
-          {/* <label>Gender :</label> */}
+
           <select
             id="gender"
             name="gender"
